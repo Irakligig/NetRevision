@@ -23,8 +23,13 @@ namespace Day1
             int attempts = 0;
             Random rnd = new Random();
             int SecretNumber = rnd.Next(1, 201);
-            int previousGuess;
+            int previousGuess = -100;
 
+            guessingPart(SecretNumber,attempts,previousGuess);
+        }
+
+        public static void guessingPart(int SecretNumber, int attempts , int previousGuess)
+        {
             while (attempts < 7)
             {
                 Console.WriteLine("Enter Number from 1 to 200");
@@ -33,34 +38,43 @@ namespace Day1
                 if (guess - SecretNumber > 20)
                 {
                     Console.WriteLine("Too high");
+                    HotCold(previousGuess, guess, SecretNumber);
                     previousGuess = guess;
                     attempts++;
                 }
                 else if (guess - SecretNumber > 10 && guess - SecretNumber <= 20)
                 {
                     Console.WriteLine("High");
+                    HotCold(previousGuess, guess, SecretNumber);
                     previousGuess = guess;
                     attempts++;
                 }
                 else if (guess - SecretNumber <= 10 && guess - SecretNumber > 0)
                 {
                     Console.WriteLine("Close-High");
+                    HotCold(previousGuess, guess, SecretNumber);
                     previousGuess = guess;
                     attempts++;
                 }
                 else if (SecretNumber - guess <= 10 && SecretNumber - guess > 0)
                 {
                     Console.WriteLine("Close-low");
+                    HotCold(previousGuess, guess, SecretNumber);
+                    previousGuess = guess;
                     attempts++;
                 }
-                else if(SecretNumber - guess > 10 && SecretNumber - guess <= 20)
+                else if (SecretNumber - guess > 10 && SecretNumber - guess <= 20)
                 {
-                     Console.WriteLine("Low");
+                    Console.WriteLine("Low");
+                    HotCold(previousGuess, guess, SecretNumber);
+                    previousGuess = guess;
                     attempts++;
                 }
                 else if (SecretNumber - guess > 20)
                 {
                     Console.WriteLine("Too low");
+                    HotCold(previousGuess, guess, SecretNumber);
+                    previousGuess = guess;
                     attempts++;
                 }
                 else
@@ -70,12 +84,27 @@ namespace Day1
                     return;
                 }
             }
-            
-            
-             
-            
         }
 
-        
+        public static void HotCold(int previousguess , int currentguess , int SecretNumber)
+        {
+            if (Math.Abs(SecretNumber - previousguess) < Math.Abs(SecretNumber - currentguess))
+            {
+                Console.WriteLine("❄️ Getting colder..");
+            }
+            else if (Math.Abs(SecretNumber - previousguess) > Math.Abs(SecretNumber - currentguess))
+            {
+                Console.WriteLine("🔥 Getting warmer!");
+            }
+            else
+            {
+                Console.WriteLine("😐 Same distance!");
+            }
+        }
+
     }
+    
+
+
 }
+
