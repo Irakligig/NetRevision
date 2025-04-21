@@ -9,6 +9,21 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Day2
 {
+    /*this is a game of tictactoe. gameflow looks likes this : 
+     in while(!gameover) { 
+        1. ask the user for the size of the board
+     2. create a board of size n*n
+     3. ask the user for the coordinates of the X,Y
+    4. check if isdraw -- separate function
+    5. check if haswon -- separate function , basically if you put something
+    inside the board , will it become a win?
+    6. if both of them fail , continue while loop
+    }
+     
+     
+     
+     
+     */
     public class TicTacToe
     {
         public static void Simulation()
